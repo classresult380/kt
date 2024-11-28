@@ -6,21 +6,6 @@
     <title>Welcome to kt</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        .feature-icon {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 15px;
-        }
-        .feature-card {
-            text-align: center;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        .feature-card:hover {
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
         .carousel-item img {
             height: calc(50vh - 56px); /* 減去導航欄高度（56px為預設高度） */
             object-fit: cover; /* 使圖片保持比例並填滿 */
@@ -37,6 +22,42 @@
             left: 0;
             width: 100%;
             height: 100%;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        body ul{
+            text-align: center
+        }
+        .product {
+            margin: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        .cart {
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        body span{
+            font-size: 20px; /* 放大介紹文字 */
+        }
+        .cart-item {
+            margin: 10px 0;
+        }
+        .remove-btn {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
         }
     </style>
     <link rel="stylesheet" href="style.css">
@@ -82,39 +103,65 @@
 </div>
 <header>
     <div class="line"></div> <!-- 上橫線 -->
-    <p>服務聯繫</p> <!-- 置中的標題 -->
+    <p>購買專區</p> <!-- 置中的標題 -->
     <div class="line"></div> <!-- 下橫線 -->
 </header>
-<h2 class="special-heading">我們的服務</h2>
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                       <h5 class="card-title">服務項目 1</h5>
-                       <p class="card-text">提供您所需的技術問題協助。</p>
-                    </div>
-                </div>
-             </div>
-             <div class="col-md-4 mb-4">
-                 <div class="card">
-                   <div class="card-body">
-                        <h5 class="card-title">服務項目 2</h5>
-                           <p class="card-text">產品上的問題。</p>
-                     </div>
-                </div>
-             </div>
-             <div class="col-md-4 mb-4">
-                 <div class="card">
-                  <div class="card-body">
-                        <h5 class="card-title">服務項目 3</h5>
-                        <p class="card-text">專人提供協助   。</p>
-                    </div>
-              </div>
+<h2 class="special-heading">產品項目</h2>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="product">
+                <img src="product1.jpg" alt="產品1">
+                <h3>產品1</h3>
+                <p>肯特管用於載具。</p>
+                <span>價格：100</span>
+                <button onclick="addToCart('肯特管', 100)">加入購物車</button>
             </div>
          </div>
+         <div class="col-md-4 mb-4">
+            <div class="product">
+                <img src="product2.jpg" alt="產品2">
+                <h3>產品2</h3>
+                <p>鏡頭好壞很重要。</p>
+                <span>價格：$700</span>
+                <button onclick="addToCart('鏡頭', 700)">加入購物車</button>
+            </div>
+         </div>
+         <div class="col-md-4 mb-4">
+            <div class="product">
+                <img src="product3.jpg" alt="產品3">
+                <h3>產品3</h3>
+                <p>喇叭用於傳波。</p>
+                <span>價格：$500</span>
+                <button onclick="addToCart('喇叭', 500)">加入購物車</button>
+            </div>
+        </div>
+     </div>
+</div>
+
+<section id="cart">
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-12 mb-6" style="text-align: center;">
+                <h2 class="special-heading">我的購物車</h2>
+                <ul id="cart-items"></ul>
+             </div>
+         </div>
     </div>
-<h2 class="special-heading">服務聯繫</h2>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6 mb-4" style="text-align: center;">
+                <button onclick="viewCart()">查看購物車</button>
+             </div>
+             <div class="col-md-6 mb-4" style="text-align: center;">
+                <button class="remove-btn" onclick="removeFromCart(0)">刪除</button>
+             </div>
+         </div>
+    </div>
+    
+    
+</section>
+<h2 class="special-heading">程式將封裝寄送</h2>
 <div class="container mt-4">
     <div class="row">
         <div class="col-md-6">
@@ -141,6 +188,41 @@
     </div>
     </div>
 </div>
+<script>
+    // 添加商品到購物車
+    function addToCart(productName, price) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.push({ name: productName, price: price });
+        localStorage.setItem('cart', JSON.stringify(cart));
+        alert(productName + ' 已加入購物車！');
+        localStorage.setItem('cart', JSON.stringify(cart)); // 更新本地儲存
+        viewCart(); // 更新購物車顯示
+    }
+
+    // 顯示購物車內容
+    function viewCart() {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let cartItems = document.getElementById('cart-items');
+        cartItems.innerHTML = '';
+        if (cart.length > 0) {
+            cart.forEach(item => {
+                let li = document.createElement('li');
+                li.textContent = `${item.name} - $${item.price}`;
+                cartItems.appendChild(li);
+            });
+        } else {
+            cartItems.innerHTML = '<li>購物車是空的</li>';
+        }
+    }
+    function removeFromCart(index) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index, 1); // 刪除指定位置的商品
+            localStorage.setItem('cart', JSON.stringify(cart)); // 更新本地儲存
+            viewCart(); // 更新購物車顯示
+        }
+    // 初始載入時顯示購物車
+    window.onload = viewCart;
+</script>
 <footer>
     <p>電子郵件:41226216@nfu.edu.tw │ 地址: 虎為科技大學 │ 電話號碼: 0978440363</p>
     <p>～本網站資料純屬研習模擬演練，若有侵權或權益受損，請來電通知更正～</p>
