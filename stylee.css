@@ -1,0 +1,156 @@
+/* 只針對具有 class="special-heading" 的 h2 標題應用樣式 */
+.special-heading {
+    background-color: #333;   /* 黑色背景 */
+    text-align: center;      /* 文字置中 */
+    position: relative;      /* 相對定位，用來讓偽元素能夠定位 */
+    font-size: 48px;         /* 設定字體大小 */
+    font-weight: bold;       /* 粗體字 */
+    color: #f9ecec;             /* 字體顏色 */
+    margin: 0px 0;          /* 設定上下間距 */
+    padding: 40px 60px;       /* 增加內部間距，讓背景變大 */
+}
+.special1-heading {
+    background-color: #333;   /* 黑色背景 */
+    text-align: center;      /* 文字置中 */
+    position: relative;      /* 相對定位，用來讓偽元素能夠定位 */
+    font-size: 48px;         /* 設定字體大小 */
+    font-weight: bold;       /* 粗體字 */
+    color: #f9ecec;             /* 字體顏色 */
+    margin: 30px 0;          /* 設定上下間距 */
+    padding: 40px 60px;       /* 增加內部間距，讓背景變大 */
+}
+/* 只針對具有 class="special-heading" 的 h3 標題應用樣式 */
+.special-heading1 {
+    position: relative;      /* 相對定位，用來讓偽元素能夠定位 */
+    font-size: 48px;         /* 設定字體大小為 96px */
+    font-weight: bold;       /* 粗體字 */
+    color: #2e83bc;             /* 字體顏色 */
+    margin: 15px 0;          /* 設定上下間距 */
+}
+
+/* 上橫線 */
+.special-heading1::before {
+    content: "";
+    position: absolute;
+    top: -10px;             /* 調整上方橫線的位置 */
+    left: 50%;              /* 先定位到 50% (置中) */
+    transform: translateX(-50%); /* 置中橫線 */
+    width: 100%;             /* 設定橫線寬度（可調整） */
+    height: 4px;            /* 設定橫線高度 */
+    background-color: #bcb8b8; /* 設定橫線顏色 */
+}
+
+/* 下橫線 */
+.special-heading1::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;          /* 調整下方橫線的位置 */
+    left: 50%;              /* 先定位到 50% (置中) */
+    transform: translateX(-50%); /* 置中橫線 */
+    width: 100%;             /* 設定橫線寬度（可調整） */
+    height: 4px;            /* 設定橫線高度 */
+    background-color: #bcb8b8; /* 設定橫線顏色 */
+}
+
+.profile-image {
+    max-width: 100%;  /* 確保圖片不會超過容器的寬度 */
+    height: auto;     /* 高度自動調整，保持圖片比例 */
+}
+label {
+    font-family: Arial, sans-serif; 
+    margin: 0;
+    padding: 0;
+    color: #333;
+    font-size: 28px; /* 放大介紹文字 */
+    line-height: 1.8;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+body h5 {
+    font-size: 30px; /* 放大介紹文字 */
+    line-height: 1.8;
+}
+
+body h3 {
+    font-size: 46px; /* 放大介紹文字 */
+    line-height: 1.8;
+}
+body p {
+    font-size: 24px; /* 放大介紹文字 */
+    line-height: 1.8;
+}
+body ul {
+    font-size: 24px; /* 放大介紹文字 */
+    line-height: 1.8;
+}
+header {
+    background-image: url('background.jpg'); /* 背景圖片 */
+    background-size: cover; /* 讓圖片覆蓋整個區域 */
+    background-position: center; /* 讓圖片置中顯示 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    color: rgb(0, 0, 0);
+    padding: 20px;
+    font-size: 40px; /* 增加頁尾字體大小 */
+    font-weight: bold;       /* 粗體字 */
+    text-align: center; /* 讓所有文字置中 */
+}
+header p {
+    margin: 5px 0;
+    font-size: 40px; /* 增加頁尾字體大小 */
+}
+
+header a {
+    color: #add8e6;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header a:hover {
+    text-decoration: underline;
+}
+.line {
+    height: 5px; /* 橫線高度 */
+    width: 40%; /* 橫線寬度 */
+    background-color: black; /* 橫線顏色 */
+    margin: 10px auto; /* 置中 */
+}
+.line1 {
+    height: 5px; /* 橫線高度 */
+    width: 100%; /* 橫線寬度 */
+    background-color: rgb(203, 141, 141); /* 橫線顏色 */
+    margin: 10px auto; /* 置中 */
+}
+.line2 {
+    height: 5px; /* 橫線高度 */
+    width: 100%; /* 橫線寬度 */
+    background-color: rgb(158, 149, 149); /* 橫線顏色 */
+    margin: 10px auto; /* 置中 */
+}
+/* 頁首設計 */
+/* 頁尾設計 */
+footer {
+    background-color: #345b72;
+    color: white;
+    padding: 20px;
+    font-size: 20px; /* 增加頁尾字體大小 */
+    line-height: 1.5;
+    text-align: center; /* 讓所有文字置中 */
+}
+
+footer p {
+    margin: 10px 0;
+}
+
+footer a {
+    color: #add8e6;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
